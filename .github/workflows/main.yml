@@ -23,3 +23,30 @@ jobs:
       - name: Clear Bluehost cache
         run: |
           curl -X POST https://shourobkhan.com/wp-admin/admin-ajax.php?action=purge_all_caches
+
+
+name: Deploy to Bluehost
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+
+      - name: Deploy to Bluehost
+        run: |
+          mkdir -p ~/.ssh
+          echo -e "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H shourobkhan.com >> ~/.ssh/known_hosts
+          rsync -r --delete-after --quiet $GITHUB_WORKSPACE/sccscomy@shourobkhan.com:public_html/
+        env:
+          GITHUB_WORKSPACE: ${{ github.workspace }}
+        continue-on-error: true
