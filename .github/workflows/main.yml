@@ -21,10 +21,5 @@ jobs:
           lfs: false
       - name: Deploy to Bluehost
         run: |
-          echo -e "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H shourobkhan.com >> ~/.ssh/known_hosts
-          rsync -r --delete-after --quiet $GITHUB_WORKSPACE/sccscomy@shourobkhan.com:
-        env:
-          GITHUB_WORKSPACE: ${{ github.workspace }}
+          git pull origin main
         continue-on-error: true
