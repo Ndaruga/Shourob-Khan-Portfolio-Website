@@ -18,7 +18,7 @@ jobs:
 
       - name: Deploy to Bluehost
         run: |
-          rsync -avz --exclude='.git/' . bluehost@shourobkhan.com:/public_html
+          rsync -avz --exclude='.git/' . bluehost@shourobkhan.com:/
 
       - name: Clear Bluehost cache
         run: |
