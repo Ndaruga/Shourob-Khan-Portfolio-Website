@@ -10947,14 +10947,28 @@ header.masthead {
   padding-top: 10.5rem;
   padding-bottom: 6rem;
   text-align: center;
-  color: #fff;
-  /* background-color:	#232b2b; */
-  background-image: url("../assets/img/Header-image.jpeg");
+  color: #c1d1e0;
+  background-color:	#232b2b;
+  background-image: url("../assets/videoplayback.gif");
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
   background-size: cover;
 }
+header.masthead video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* height: 8%; */
+    object-fit: cover;
+}
+header.masthead .home-content{
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
 header.masthead .masthead-subheading {
   font-size: 1.5rem;
   font-style: italic;
@@ -10975,6 +10989,14 @@ header.masthead .masthead-heading {
     padding-top: 17rem;
     padding-bottom: 12.5rem;
   }
+  header.masthead video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4%;
+    object-fit: cover;
+  }
   header.masthead .masthead-subheading {
     font-size: 2.25rem;
     font-style: italic;
@@ -10988,6 +11010,7 @@ header.masthead .masthead-heading {
     margin-bottom: 4rem;
   }
 }
+
 #portfolio .portfolio-item {
   max-width: 26rem;
   margin-left: auto;
