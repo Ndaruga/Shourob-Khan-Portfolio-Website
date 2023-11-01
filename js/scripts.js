@@ -42,4 +42,26 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     });
 
+    const form = document.getElementById("contactForm");
+
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        
+        fetch(form.action, {
+            method: "POST",
+            body: new FormData(form)
+        })
+        .then(response => response.text())
+        .then(result => {
+            if (result === "success") {
+                // Show success message to the user
+                document.getElementById("submitSuccessMessage").classList.remove("d-none");
+                form.reset();
+            } else {
+                // Show error message to the user
+                document.getElementById("submitErrorMessage").classList.remove("d-none");
+            }
+        });
+    });
+
 });
