@@ -304,8 +304,13 @@ img,
 svg {
   vertical-align: middle;
 }
-path {
+path#fa_icons {
   fill: white;
+}
+
+.fa-stack svg {
+  height: 1.5em;
+  width: 1.5em;
 }
 
 table {
