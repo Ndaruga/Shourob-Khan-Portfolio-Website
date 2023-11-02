@@ -10962,6 +10962,7 @@ header.masthead {
   content: "|";
   display: inline-block;
   animation: blink 1s infinite;
+  color: #ffc800;
 }
 
 @keyframes blink {

@@ -42,39 +42,40 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     });
 
-    document.addEventListener("DOMContentLoaded", function() {
-        const jobTitleElement = document.getElementById("job-title");
-        const jobTitles = ["Data Scientist", "Web Developer"];
-        let currentIndex = 0;
-        let currentJobTitle = jobTitles[currentIndex];
-    
-        function typeJobTitle() {
-            if (currentIndex >= jobTitles.length) {
-                currentIndex = 0;
-            }
+// Add the Typing Effect
+    const jobTitleElement = document.getElementById("job-title");
+    const jobTitles = ["Data Scientist", "ML Engineer","Web Developer"];
+    let currentIndex = 0;
+    let currentJobTitle = "";
+    let isTyping = true;
+
+    function updateJobTitle() {
+        if (isTyping) {
             currentJobTitle = jobTitles[currentIndex];
-            const text = currentJobTitle.slice(0, jobTitleElement.textContent.length + 1);
-            jobTitleElement.textContent = text;
-            if (text === currentJobTitle) {
-                setTimeout(eraseJobTitle, 1000);
+            jobTitleElement.textContent = currentJobTitle.slice(0, jobTitleElement.textContent.length + 1);
+
+            if (jobTitleElement.textContent.length === currentJobTitle.length) {
+                isTyping = false;
+                setTimeout(updateJobTitle, 1000);
             } else {
-                setTimeout(typeJobTitle, 150);
+                setTimeout(updateJobTitle, 100);
+            }
+        } else {
+            jobTitleElement.textContent = currentJobTitle.slice(0, jobTitleElement.textContent.length - 1);
+
+            if (jobTitleElement.textContent === "") {
+                isTyping = true;
+                currentIndex = (currentIndex + 1) % jobTitles.length;
+                setTimeout(updateJobTitle, 500);
+            } else {
+                setTimeout(updateJobTitle, 100);
             }
         }
+    }
+
+    setTimeout(updateJobTitle, 500); // Start typing effect after 0.5 seconds
+    // });
     
-        function eraseJobTitle() {
-            const text = currentJobTitle.slice(0, jobTitleElement.textContent.length - 1);
-            jobTitleElement.textContent = text;
-            if (text === "") {
-                currentIndex++;
-                setTimeout(typeJobTitle, 500);
-            } else {
-                setTimeout(eraseJobTitle, 100);
-            }
-        }
-    
-        setTimeout(typeJobTitle, 500); // Start typing effect after 0.5 seconds
-    });
     
 
     const form = document.getElementById("contactForm");
