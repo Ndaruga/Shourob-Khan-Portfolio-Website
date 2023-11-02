@@ -10956,6 +10956,19 @@ header.masthead {
   background-position: center center;
   background-size: cover;
 }
+
+/* CSS for cursor animation */
+.masthead-heading:after {
+  content: "|";
+  display: inline-block;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 header.masthead video {
   position: absolute;
   top: 0;

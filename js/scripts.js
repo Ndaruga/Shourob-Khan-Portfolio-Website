@@ -42,6 +42,41 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     });
 
+    document.addEventListener("DOMContentLoaded", function() {
+        const jobTitleElement = document.getElementById("job-title");
+        const jobTitles = ["Data Scientist", "Web Developer"];
+        let currentIndex = 0;
+        let currentJobTitle = jobTitles[currentIndex];
+    
+        function typeJobTitle() {
+            if (currentIndex >= jobTitles.length) {
+                currentIndex = 0;
+            }
+            currentJobTitle = jobTitles[currentIndex];
+            const text = currentJobTitle.slice(0, jobTitleElement.textContent.length + 1);
+            jobTitleElement.textContent = text;
+            if (text === currentJobTitle) {
+                setTimeout(eraseJobTitle, 1000);
+            } else {
+                setTimeout(typeJobTitle, 150);
+            }
+        }
+    
+        function eraseJobTitle() {
+            const text = currentJobTitle.slice(0, jobTitleElement.textContent.length - 1);
+            jobTitleElement.textContent = text;
+            if (text === "") {
+                currentIndex++;
+                setTimeout(typeJobTitle, 500);
+            } else {
+                setTimeout(eraseJobTitle, 100);
+            }
+        }
+    
+        setTimeout(typeJobTitle, 500); // Start typing effect after 0.5 seconds
+    });
+    
+
     const form = document.getElementById("contactForm");
 
     form.addEventListener("submit", function (e) {
@@ -63,5 +98,7 @@ window.addEventListener('DOMContentLoaded', event => {
             }
         });
     });
+
+
 
 });
