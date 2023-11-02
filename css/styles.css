@@ -10957,12 +10957,24 @@ header.masthead {
   background-size: cover;
 }
 
+header.masthead::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Adjust the opacity level (0.5 for 50%) */
+  z-index: 1; /* Place it between the video and content */
+}
+
 /* CSS for cursor animation */
 .masthead-heading:after {
   content: "|";
   display: inline-block;
   animation: blink 1s infinite;
   color: #ffc800;
+  font-weight: 300;
 }
 
 @keyframes blink {
@@ -10987,14 +10999,26 @@ header.masthead .home-content{
 }
 
 header.masthead .masthead-subheading {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-style: italic;
   line-height: 1.5rem;
   margin-bottom: 25px;
   font-family: "Roboto Slab", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
+
+header.masthead .masthead-subheading #my-name{
+  color: #ffc800;
+}
+
+@media (max-width: 524px){
+  header.masthead .masthead-subheading #my-name{
+    color: #ffc800;
+    display: block;
+    margin-top: 5px;
+  }
+}
 header.masthead .masthead-heading {
-  font-size: 3.25rem;
+  font-size: 2.25rem;
   font-weight: 700;
   line-height: 3.25rem;
   margin-bottom: 2rem;
@@ -11022,8 +11046,8 @@ header.masthead .masthead-heading {
     margin-bottom: 2rem;
   }
   header.masthead .masthead-heading {
-    font-size: 4.5rem;
-    font-weight: 700;
+    font-size: 3.5rem;
+    font-weight: 500;
     line-height: 4.5rem;
     margin-bottom: 4rem;
   }
