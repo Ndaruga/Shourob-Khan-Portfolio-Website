@@ -74,32 +74,45 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
     setTimeout(updateJobTitle, 500); // Start typing effect after 0.5 seconds
-    // });
-    
-    
-
-    const form = document.getElementById("contactForm");
-
-    form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        
-        fetch(form.action, {
-            method: "POST",
-            body: new FormData(form)
-        })
-        .then(response => response.text())
-        .then(result => {
-            if (result === "success") {
-                // Show success message to the user
-                document.getElementById("submitSuccessMessage").classList.remove("d-none");
-                form.reset();
-            } else {
-                // Show error message to the user
-                document.getElementById("submitErrorMessage").classList.remove("d-none");
-            }
-        });
-    });
-
-
 
 });
+
+function sendEmail() {      
+    // e.preventDefault();
+    console.log("Function called");
+    
+    // Get input values
+    var emailInput = document.getElementById("email");
+    var subjectInput = document.getElementById("subject");
+    var messageInput = document.getElementById("message");
+    console.log(messageInput.value);
+
+    // Check if required fields are empty
+    if (!emailInput.value || !subjectInput.value || !messageInput.value) {
+        
+        alert('Please fill in all required fields.');
+    } else {
+    // Replace with the correct method to send emails using the library you're using
+    Email.send({
+        Host: "smtp.elasticemail.com",
+        Username : "kingorifrancis29@gmail.com",
+        Password : "4B88F873FC5CF10E524C3F45C4D7DCA049EB",
+        To : 'kingorifrancis19@gmail.com',
+        From : emailInput.value,
+        Subject : subjectInput.value,
+        Body : messageInput.value
+    }).then(
+        message => {
+            document.getElementById('submitSuccessMessage').classList.remove('d-none');
+            emailInput.value = "";
+            subjectInput.value = "";
+            messageInput.value = "";
+        }
+    ).catch(
+        error => {
+            document.getElementById('submitErrorMessage').classList.remove('d-none');
+        }
+    );
+    }
+    return false;
+}
